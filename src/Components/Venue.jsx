@@ -3,77 +3,50 @@ import venue from "../Imgs/venue.png";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import map from "../Imgs/map.png";
+import ImageSwipper from "./ImageSwipper";
 
-const Venue = () => {
+const Venue = ({ cardData }) => {
+  const images = [
+    "https://media.istockphoto.com/id/1399000045/photo/wedding-guests-clapping-hands-as-the-newlywed-couple-walk-down-the-aisle-joyful-bride-and.jpg?s=612x612&w=0&k=20&c=KQLABtP9v0zSmT_pqIqhdRlG-nWIEOUoGFofIxgjlqI=",
+    "https://images.unsplash.com/photo-1524479967500-c3a0bf56d080?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8d2VkZGluZyUyMHZlbnVlfGVufDB8fDB8fHww",
+    "https://images.unsplash.com/photo-1571268373914-e888c6dafeff?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHdlZGRpbmclMjB2ZW51ZXxlbnwwfHwwfHx8MA%3D%3D",
+  ];
   return (
-    <div className="w-full sm:h-[400px] h-[170px]  flex sm:mt-[60px] mt-5 justify-between">
-      <div className="h-full w-[25%]">
-        <img
-          src={venue}
-          className="h-full w-full object-cover rounded-2xl"
-          alt="venue"
-        />
-      </div>
-      <div className="h-full sm:w-[65%] w-[70%]">
-        <p
-          className="font-[400] sm:text-[60px] text-xl sm:mt-[15px]"
-          style={{ fontFamily: "Parisienne" }}
-        >
-          Venue
-        </p>
-        <p
-          className="sm:text-[24px] text-[8px] font-[400] sm:mt-8"
-          style={{ fontFamily: "Inter" }}
-        >
-          Please join us for some drinks and bar hopping afterwards.
-        </p>
-        <div className="w-full flex justify-between sm:mt-[54px] mt-3">
-          <div className="w-[55%] ">
-            <h2
-              className="font-[600] sm:text-[30px] text-[12px]"
-              style={{ fontFamily: "Inter" }}
-            >
-              When:
-            </h2>
-            <p
-              className="font-[400] sm:text-[20px] sm:mt-2 text-[9px]"
-              style={{ fontFamily: "Inter" }}
-            >
-              THURSDAY 10TH JULY, 2025 AT 6PM
-            </p>
-
-            <h2
-              className="font-[600] sm:text-[30px] sm:mt-[60px] mt-3 text-[12px]"
-              style={{ fontFamily: "Inter" }}
-            >
-              Location:
-            </h2>
-            <p
-              className="font-[400] sm:text-[20px] sm:mt-2 text-[9px]"
-              style={{ fontFamily: "Inter" }}
-            >
-              123 Anywhere St, Any City
-            </p>
-          </div>
-          <div className="sm:w-[35%] w-[40%] sm:h-[200px]">
-            <img src={map} alt="" />
-            {/* <MapContainer
-              center={[51.505, -0.09]}
-              zoom={13}
-              style={{ height: "250px", width: "100%" }}
-            >
-              <TileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              />
-              <Marker position={[51.505, -0.09]}>
-                <Popup>
-                  A pretty CSS3 popup.<br /> Easily customizable.
-                </Popup>
-              </Marker>
-            </MapContainer> */}
-          </div>
+    <div
+      className="w-full sm:mt-[65px] mt-11 flex sm:flex-row flex-col  items-center justify-between "
+      style={{ backgroundColor: cardData?.bgColor }}
+    >
+      <div className="sm:w-[50%] w-[100%] sm:p-0 p-3 sm:h-[350px] flex justify-center items-center">
+        <div className="w-[90%] h-[80%] flex flex-col items-center">
+          <h2
+            className="sm:text-[30px] text-[28px] text-[#C6754D] font-[400] text-center "
+            style={{ fontFamily: "Montaga" }}
+          >
+            The Venue
+          </h2>
+          <h2
+            className="sm:text-[35px] text-[30px] font-[400] text-center sm:mt-3  "
+            style={{ fontFamily: "Montaga" }}
+          >
+            {cardData?.venueName}
+            {/* Gino Winery Estate */}
+          </h2>
+          <p
+            className="text-[18px] font-[400] text-center mt-2 "
+            style={{ fontFamily: "Montaga" }}
+          >
+            {cardData?.venueDescription}
+          </p>
+          <p
+            className="text-[18px] font-[400] text-center mt-2"
+            style={{ fontFamily: "Montaga" }}
+          >
+            {cardData?.Location}
+          </p>
         </div>
+      </div>
+      <div className="w-[100%] flex justify-center items-center sm:mt-0 mt-10">
+        <ImageSwipper images={cardData?.venueImages} />
       </div>
     </div>
   );

@@ -10,8 +10,8 @@ const ThingsToDo = () => {
       >
         Things to do
       </h2>
-      <div className="sm:w-[100%] w-[95%] flex justify-between">
-        <div className="w-[50%]">
+      <div className="sm:w-[100%] w-[95%] flex justify-between h-[50vh] sm:h-[100vh] sm:mt-5">
+        <div className="sm:w-[70%] w-[50%] overflow-y-scroll scroll-smooth">
           <div className="w-[100%] sm:mt-9 mt-[20px]">
             <h2
               style={{ fontFamily: "Montaga" }}
@@ -97,8 +97,12 @@ const ThingsToDo = () => {
             </p>
           </div>
         </div>
-        <div className="w-[40%] ">
-          <img src={ttd} alt="" className="sm:mt-6 mt-[20px]" />
+        <div className="sm:w-[30%] w-[50%] flex justify-center">
+          <img
+            src={ttd}
+            alt=""
+            className="sm:mt-6 mt-[20px] h-[50vh] sm:h-[100vh]"
+          />
         </div>
       </div>
     </div>
