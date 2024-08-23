@@ -196,7 +196,7 @@ const Card = () => {
               //   style={{ backgroundColor: cardData?.bgColor }}
               // >
               <div
-                className="w-[100%] object-cover flex justify-center items-center sm:mt-[60px] mt-10"
+                className="w-[100%] object-cover flex justify-center items-center"
                 style={{
                   backgroundImage: `url(${cardData?.rsvpBgImage})`,
                   backgroundSize: "cover",
