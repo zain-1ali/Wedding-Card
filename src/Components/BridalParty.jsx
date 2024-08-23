@@ -8,11 +8,11 @@ const BridalParty = ({ cardData }) => {
   const [isMen, setIsMen] = useState(true);
 
   return (
-    <div className="w-full flex justify-center items-center sm:mt-[65px] mt-11  sm:h-[350px] sm:pb-0 pb-2">
-      <div className="sm:w-[92%] sm:h-[85%] h-[100%] w-[100%]  ">
+    <div className="w-full flex justify-center items-center sm:h-[350px] sm:pb-0 pb-2 ">
+      <div className="sm:w-[92%] sm:h-[85%] w-[100%]">
         <h2
-          className="font-[400] sm:text-[30px] text-[24px] sm:text-start text-center sm:mt-0 mt-[16px]  "
-          style={{ fontFamily: "Montaga" }}
+          className="font-[400] sm:text-[30px] text-[24px] sm:text-start text-center sm:mt-0 mt-[16px]"
+          // style={{ fontFamily: "Montaga" }}
         >
           The Bridal Party
         </h2>
@@ -21,8 +21,8 @@ const BridalParty = ({ cardData }) => {
             <h2
               className="pb-1 font-[400] sm:text-[20px] text-[18px] w-max pr-1 cursor-pointer  "
               style={{
-                fontFamily: "Montaga",
-                borderBottom: isMen ? "1px solid #C6754D" : null,
+                // fontFamily: "Montaga",
+                borderBottom: isMen ? `1px solid ${cardData?.textColor}` : null,
               }}
               onClick={() => setIsMen(true)}
             >
@@ -31,8 +31,10 @@ const BridalParty = ({ cardData }) => {
             <h2
               className="   pb-1 font-[400] sm:text-[20px] text-[18px] w-max pr-1 sm:mt-4 cursor-pointer  "
               style={{
-                fontFamily: "Montaga",
-                borderBottom: !isMen ? "1px solid #C6754D" : null,
+                // fontFamily: "Montaga",
+                borderBottom: !isMen
+                  ? `1px solid ${cardData?.textColor}`
+                  : null,
               }}
               onClick={() => setIsMen(false)}
             >
@@ -40,7 +42,7 @@ const BridalParty = ({ cardData }) => {
             </h2>
           </div>
           {isMen ? (
-            <div className="sm:h-[70%] sm:w-[85%] flex sm:flex-row flex-col sm:items-start items-center sm:justify-start sm:gap-[10%] gap-5 sm:mt-0 mt-4  ">
+            <div className="sm:h-[70%] h-[80vh] sm:w-[85%] flex sm:flex-row flex-col sm:items-start items-center sm:justify-start sm:gap-[10%] gap-5 sm:mt-0 mt-4 ">
               {cardData?.groomsMen?.map((elm) => {
                 return (
                   <div className="w-[170px]  flex flex-col justify-center items-center ">
@@ -51,7 +53,7 @@ const BridalParty = ({ cardData }) => {
                     />
                     <h2
                       className="text-[18px] font-[400] mt-2"
-                      style={{ fontFamily: "Montaga" }}
+                      // style={{ fontFamily: "Montaga" }}
                     >
                       {elm?.name}
                     </h2>
@@ -67,7 +69,7 @@ const BridalParty = ({ cardData }) => {
                 />
                 <h2
                   className="text-[18px] font-[400] mt-2  bg-[#FCF9F7]"
-                  style={{ fontFamily: "Montaga" }}
+                  // style={{ fontFamily: "Montaga" }}
                 >
                   Julian Bernard
                 </h2>

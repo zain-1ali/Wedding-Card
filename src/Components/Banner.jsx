@@ -27,7 +27,7 @@ const Banner = ({ cardData }) => {
   };
   return (
     <div
-      className="w-[100%] sm:min-h-[100vh] max-h-[300px]  flex flex-col items-center sm:mt-[70px] mt-10 border"
+      className="w-[100%] sm:min-h-[100vh] max-h-[300px]  flex flex-col items-center sm:mt-[70px] mt-10"
       style={{
         backgroundImage: `url(${cardData?.headerImage})`,
         backgroundSize: "cover",
@@ -38,22 +38,22 @@ const Banner = ({ cardData }) => {
         backgroundColor: cardData?.bgColor,
       }}
     >
-      <div className="bg-transparent flex flex-col justify-center items-center sm:mt-4">
+      <div className="bg-transparent flex flex-col justify-center items-center sm:mt-4 w-[90%]">
         <p
-          className="font-[400] sm:text-[30px] text-[16px] text-[#C6754D] bg-transparent"
-          style={{ fontFamily: "Montaga" }}
+          className="font-[400] sm:text-[30px] text-[16px]  bg-transparent"
+          style={{ color: cardData?.textColor }}
         >
           {cardData?.welcomeText}
         </p>
         <h2
-          className="font-[400] sm:text-[70px] text-[40px] text-[#2B1105]  bg-transparent"
-          style={{ fontFamily: "Montaga" }}
+          className="font-[400] sm:text-[70px] text-[36px]  bg-transparent text-center sm:w-[100%] w-[93%]"
+          style={{ color: cardData?.textColor }}
         >
           {cardData?.groomName} & {cardData?.brideName}
         </h2>
         <p
-          className="font-[400] sm:text-[30px] text-[16px] text-[#C6754D] bg-transparent"
-          style={{ fontFamily: "Montaga" }}
+          className="font-[400] sm:text-[30px] text-[16px]  bg-transparent"
+          style={{ color: cardData?.textColor }}
         >
           {formatDate(cardData?.eventDate)} - {cardData?.location}
         </p>

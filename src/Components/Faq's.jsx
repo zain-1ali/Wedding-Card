@@ -9,7 +9,7 @@ const Faq = ({ cardData }) => {
     <div className="w-full sm:mt-[65px] mt-11 flex flex-col items-center ">
       <h2
         className="font-[400] sm:text-[60px] text-3xl sm:mt-[15px] z-20"
-        style={{ fontFamily: "Parisienne" }}
+        // style={{ fontFamily: "Parisienne" }}
       >
         Faq's
       </h2>
@@ -19,7 +19,7 @@ const Faq = ({ cardData }) => {
             <div className="w-[95%] sm:mt-9 mt-[20px]">
               <div className="w-[100%] flex justify-between">
                 <h2
-                  style={{ fontFamily: "Montaga" }}
+                  // style={{ fontFamily: "Montaga" }}
                   className="font-[400] sm:text-[30px] text-[16px]"
                 >
                   {elm?.question}
@@ -40,7 +40,7 @@ const Faq = ({ cardData }) => {
               </div>
               {show && clickedIndex === i && (
                 <p
-                  style={{ fontFamily: "Montaga" }}
+                  // style={{ fontFamily: "Montaga" }}
                   className="font-[400] sm:text-[16px] text-[12px] mt-3"
                 >
                   {elm?.answer}

@@ -24,17 +24,21 @@ const Transportation = ({ cardData }) => {
         ref={sliderRef}
         {...sliderSettings}
         arrows={innerWidth > 500 ? true : false}
-        className=" sm:w-[40%]  w-[95%] sm:h-[60%] h-[40%]"
-        style={{ backgroundColor: cardData?.bgColor }}
+        className={`h-[100%] w-[100%]`}
+        style={{
+          backgroundColor: cardData?.placesBackground
+            ? cardData?.bgColor
+            : "white",
+        }}
       >
         {cardData?.placesWeLove?.map((step, index) => (
           <div
-            className="w-[100%]  sm:h-[100%]  h-[50%]  flex flex-col items-center mt-2"
-            style={{ backgroundColor: cardData?.bgColor }}
+            className="w-[100%]  sm:h-[100%]  h-[50%]  flex flex-col items-center  mt-2"
+            // style={{ backgroundColor: cardData?.bgColor }}
           >
             <h2
               className="font-[400] sm:text-[60px] text-3xl sm:mt-[30px] z-20 text-center"
-              style={{ fontFamily: "Parisienne" }}
+              // style={{ fontFamily: "Parisienne" }}
             >
               Places We Love
             </h2>
@@ -42,19 +46,19 @@ const Transportation = ({ cardData }) => {
             <div className="w-[100%] flex sm:flex-row flex-col items-center sm:justify-between  sm:mt-10 mt-1 ">
               <div className="sm:w-[100%] w-[95%] sm:mt-[1px] mt-[20px] flex flex-col items-center">
                 <h2
-                  style={{ fontFamily: "Montaga" }}
+                  // style={{ fontFamily: "Montaga" }}
                   className="font-[400] sm:text-[30px] text-[16px]"
                 >
                   {step?.name}
                 </h2>
                 <p
-                  style={{ fontFamily: "Montaga" }}
+                  // style={{ fontFamily: "Montaga" }}
                   className="font-[400] sm:text-[16px] text-[12px] w-[90%] text-center"
                 >
                   {step?.description}
                 </p>
                 <button
-                  style={{ fontFamily: "Montaga" }}
+                  // style={{ fontFamily: "Montaga" }}
                   className="sm:h-[45px] h-[30px] sm:w-[91px] w-[60px] border sm:mt-5 mt-2 bg-[#FCF9F7] border-[black] font-[400] sm:text-[22px] text-[14px]"
                 >
                   Book

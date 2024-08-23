@@ -7,34 +7,44 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import StepLabel from "@mui/material/StepLabel";
 import { styled } from "@mui/system";
-
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
-
-// Custom StepIcon component
-const CustomStepIconRoot = styled("div")(({ theme, ownerState }) => ({
-  backgroundColor: ownerState.active ? "black" : "transparent",
-  border: ownerState.active ? "none" : "2px solid black",
-  zIndex: 1,
-  color: ownerState.active ? "white" : "black",
-  width: 22,
-  height: 22,
-  display: "flex",
-  borderRadius: "50%",
-  justifyContent: "center",
-  alignItems: "center",
-}));
-
-function CustomStepIcon(props) {
-  const { active, className } = props;
-
-  return <CustomStepIconRoot ownerState={{ active }} className={className} />;
-}
+import { StepConnector } from "@mui/material";
 
 const Itinerary = ({ cardData }) => {
+  // Custom StepIcon component
+  const CustomStepIconRoot = styled("div")(({ theme, ownerState }) => ({
+    backgroundColor: ownerState.active ? cardData.textColor : "transparent",
+    border: ownerState.active ? "none" : `2px solid ${cardData.textColor}`,
+    zIndex: 1,
+    color: ownerState.active ? "white" : cardData.textColor,
+    width: 22,
+    height: 22,
+    display: "flex",
+    borderRadius: "50%",
+    justifyContent: "center",
+    alignItems: "center",
+  }));
+
+  function CustomStepIcon(props) {
+    const { active, className } = props;
+
+    return <CustomStepIconRoot ownerState={{ active }} className={className} />;
+  }
+
+  const CustomConnector = styled(StepConnector)(({ theme }) => ({
+    [`&.${StepConnector.root}`]: {
+      color: cardData?.textColor,
+      "& .MuiStepConnector-line": {
+        borderColor: cardData?.textColor, // Change the line color here
+        borderTopWidth: 2, // Adjust the thickness of the line
+      },
+    },
+  }));
+
   const steps = [
     { event: "welcome cocktail", day: "THURSDAY JULY 10TH 6PM" },
     { event: "REHEARSAL DINNER", day: "FRIDAY JULY 11TH 6PM" },
@@ -123,6 +133,10 @@ const Itinerary = ({ cardData }) => {
     <div className="w-full sm:mt-[65px] mt-11 flex flex-col items-center mb-7">
       <style>
         {`
+        .css-z7uhs0-MuiStepConnector-line{
+        border-color:${cardData?.textColor} !important;
+        
+        }
           .slick-prev, .slick-next {
             width: 50px;
             height: 50px;
@@ -132,7 +146,7 @@ const Itinerary = ({ cardData }) => {
 
           .slick-prev::before, .slick-next::before {
             font-size: 50px;
-            color: black; /* Change arrow color here */
+            color: ${cardData?.textColor}; /* Change arrow color here */
           }
 
           .slick-prev {
@@ -146,13 +160,17 @@ const Itinerary = ({ cardData }) => {
       </style>
       <h2
         className="font-[400] sm:text-[60px] text-3xl sm:mt-[15px]"
-        style={{ fontFamily: "Parisienne" }}
+        // style={{ fontFamily: "Parisienne" }}
       >
         The Itinerary
       </h2>
       <div className="w-[100%] sm:mt-[50px] mt-[20px]">
         <Box>
-          <Stepper alternativeLabel activeStep={activeStep}>
+          <Stepper
+            alternativeLabel
+            activeStep={activeStep}
+            connector={<CustomConnector />}
+          >
             {itinerary.map((label, index) => (
               <Step key={label}>
                 <StepLabel
@@ -160,13 +178,15 @@ const Itinerary = ({ cardData }) => {
                   onClick={handleStep(index)}
                 >
                   <p
-                    style={{ fontFamily: "Inter" }}
+                    style={{
+                      color: cardData?.textColor,
+                    }}
                     className="font-[400] sm:text-[16px] text-[12px]"
                   >
                     {label.title}
                   </p>
                   <p
-                    style={{ fontFamily: "Inter" }}
+                    style={{ color: cardData?.textColor }}
                     className="font-[400] sm:text-[12px] text-[9px]"
                   >
                     {formatDate(label?.date)} {convertToAmPm(label?.time)}
@@ -193,19 +213,25 @@ const Itinerary = ({ cardData }) => {
                       <div className="w-[100%] flex mt-3">
                         <div
                           className="w-[20%]  font-[400] sm:text-[24px] text-[14px] "
-                          style={{ fontFamily: "Montaga" }}
+                          // style={{ fontFamily: "Montaga" }}
                         >
                           {convertToAmPm(elm?.time)}
                         </div>
                         <div className="w-[80%] ">
                           <h2
-                            style={{ fontFamily: "Montaga" }}
+                            style={{
+                              // fontFamily: "Montaga",
+                              color: cardData?.textColor,
+                            }}
                             className="font-[400] sm:text-[30px] text-[16px]"
                           >
                             {elm?.title}
                           </h2>
                           <p
-                            style={{ fontFamily: "Montaga" }}
+                            style={{
+                              // fontFamily: "Montaga",
+                              color: cardData?.textColor,
+                            }}
                             className="font-[400] sm:text-[16px] text-[12px]"
                           >
                             {elm?.description}

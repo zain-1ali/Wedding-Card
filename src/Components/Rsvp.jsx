@@ -31,11 +31,46 @@ const Rsvp = ({ cardData }) => {
       });
   };
   return (
-    <div className="w-full sm:mt-[60px] mt-10 flex flex-col items-center">
+    <div className="w-full  flex flex-col items-center">
+      <style>
+        {`
+        input[type="radio"] {
+  appearance: none; /* For modern browsers */
+  -webkit-appearance: none; /* For Safari and older browsers */
+  -moz-appearance: none; /* For Firefox */
+  background-color: transparent;
+  border: 1px solid ${cardData?.textColor}; /* Add a custom border */
+  width: 20px;
+  height: 20px;
+  border-radius: 50%; /* Make it circular */
+  cursor: pointer;
+  position: relative;
+}
+
+/* Style the checked state */
+input[type="radio"]:checked {
+  background-color: transparent;
+  border-color: ${cardData?.textColor}; /* Change border color when selected */
+}
+
+/* Custom dot inside the radio button when selected */
+input[type="radio"]:checked::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: ${cardData?.textColor}; 
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+        `}
+      </style>
       <Toaster />
       <h2
         className="font-[400] sm:text-[60px] text-3xl sm:mt-[15px]"
-        style={{ fontFamily: "Parisienne" }}
+        // style={{ fontFamily: "Parisienne" }}
       >
         Rsvp
       </h2>
@@ -43,13 +78,14 @@ const Rsvp = ({ cardData }) => {
         <div className="sm:w-[49%] w-[48%]">
           <p
             className="font-[400] sm:text-[18px] text-[14px]"
-            style={{ fontFamily: "Inter" }}
+            // style={{ fontFamily: "Inter" }}
           >
             First Name
           </p>
           <input
             type="text"
-            className="w-[100%] sm:h-[45px] h-[40px] rounded-lg outline-none pl-2 border border-[#696969] mt-1 bg-transparent"
+            className="w-[100%] sm:h-[45px] h-[40px] rounded-lg outline-none pl-2 border  mt-1 bg-transparent"
+            style={{ border: `1px solid ${cardData?.textColor}` }}
             onChange={(e) =>
               setRsvpForm({ ...rsvpForm, fName: e.target.value })
             }
@@ -59,13 +95,14 @@ const Rsvp = ({ cardData }) => {
         <div className="sm:w-[49%] w-[48%]">
           <p
             className="font-[400] sm:text-[18px] text-[14px]"
-            style={{ fontFamily: "Inter" }}
+            // style={{ fontFamily: "Inter" }}
           >
             Last Name
           </p>
           <input
             type="text"
-            className="w-[100%] sm:h-[45px] h-[40px] rounded-lg outline-none pl-2 border border-[#696969] mt-1 bg-transparent"
+            className="w-[100%] sm:h-[45px] h-[40px] rounded-lg outline-none pl-2 border  mt-1 bg-transparent"
+            style={{ border: `1px solid ${cardData?.textColor}` }}
             onChange={(e) =>
               setRsvpForm({ ...rsvpForm, lastName: e.target.value })
             }
@@ -78,13 +115,14 @@ const Rsvp = ({ cardData }) => {
         <div className="sm:w-[49%] w-[48%]">
           <p
             className="font-[400] sm:text-[18px] text-[14px]"
-            style={{ fontFamily: "Inter" }}
+            // style={{ fontFamily: "Inter" }}
           >
             Email
           </p>
           <input
             type="text"
-            className="w-[100%] sm:h-[45px] h-[40px] rounded-lg outline-none pl-2 border border-[#696969] mt-1 bg-transparent"
+            className="w-[100%] sm:h-[45px] h-[40px] rounded-lg outline-none pl-2 border  mt-1 bg-transparent"
+            style={{ border: `1px solid ${cardData?.textColor}` }}
             onChange={(e) => setRsvpForm({ ...rsvpForm, mail: e.target.value })}
             value={rsvpForm?.mail}
           />
@@ -92,13 +130,14 @@ const Rsvp = ({ cardData }) => {
         <div className="sm:w-[49%] w-[48%]">
           <p
             className="font-[400] sm:text-[18px] text-[14px]"
-            style={{ fontFamily: "Inter" }}
+            // style={{ fontFamily: "Inter" }}
           >
             Phone Number
           </p>
           <input
             type="text"
-            className="w-[100%] sm:h-[45px] h-[40px] rounded-lg outline-none pl-2 border border-[#696969] mt-1 bg-transparent"
+            className="w-[100%] sm:h-[45px] h-[40px] rounded-lg outline-none pl-2 border  mt-1 bg-transparent"
+            style={{ border: `1px solid ${cardData?.textColor}` }}
             onChange={(e) =>
               setRsvpForm({ ...rsvpForm, phone: e.target.value })
             }
@@ -111,12 +150,15 @@ const Rsvp = ({ cardData }) => {
         <div className="w-[100%]">
           <p
             className="font-[400] sm:text-[18px] text-[14px]"
-            style={{ fontFamily: "Inter" }}
+            // style={{ fontFamily: "Inter" }}
           >
             Number of guests
           </p>
           <div className="sm:w-[49%] w-[100%] flex justify-between mt-1">
-            <div className="sm:w-[48%] w-[48%] sm:h-[45px] h-[40px] rounded-lg outline-none sm:pl-4 pl-2 border border-[#696969] flex items-center">
+            <div
+              className="sm:w-[48%] w-[48%] sm:h-[45px] h-[40px] rounded-lg outline-none sm:pl-4 pl-2 border  flex items-center"
+              style={{ border: `1px solid ${cardData?.textColor}` }}
+            >
               <input
                 type="radio"
                 onClick={() =>
@@ -127,13 +169,16 @@ const Rsvp = ({ cardData }) => {
               />
               <p
                 className="sm:text-[18px] text-[16px] sm:ml-2 ml-2"
-                style={{ fontFamily: "Inter" }}
+                // style={{ fontFamily: "Inter" }}
               >
                 One
               </p>
             </div>
 
-            <div className="sm:w-[48%] w-[48%] sm:h-[45px] h-[40px] rounded-lg outline-none sm:pl-4 pl-2 border border-[#696969] flex items-center">
+            <div
+              className="sm:w-[48%] w-[48%] sm:h-[45px] h-[40px] rounded-lg outline-none sm:pl-4 pl-2 border flex items-center"
+              style={{ border: `1px solid ${cardData?.textColor}` }}
+            >
               <input
                 type="radio"
                 onClick={() =>
@@ -144,7 +189,7 @@ const Rsvp = ({ cardData }) => {
               />
               <p
                 className="sm:text-[18px] text-[16px] sm:ml-2 ml-2"
-                style={{ fontFamily: "Inter" }}
+                // style={{ fontFamily: "Inter" }}
               >
                 Two
               </p>
@@ -158,7 +203,7 @@ const Rsvp = ({ cardData }) => {
               />
               <p
                 className="sm:text-[18px] text-[16px] sm:ml-2 ml-1"
-                style={{ fontFamily: "Inter" }}
+                // style={{ fontFamily: "Inter" }}
               >
                 Three
               </p>
@@ -172,7 +217,7 @@ const Rsvp = ({ cardData }) => {
               />
               <p
                 className="sm:text-[18px] text-[16px] sm:ml-2 ml-2"
-                style={{ fontFamily: "Inter" }}
+                // style={{ fontFamily: "Inter" }}
               >
                 Four
               </p>
@@ -185,12 +230,15 @@ const Rsvp = ({ cardData }) => {
         <div className="w-[100%] ">
           <p
             className="font-[400] sm:text-[18px] text-[14px]"
-            style={{ fontFamily: "Inter" }}
+            // style={{ fontFamily: "Inter" }}
           >
             Attendance
           </p>
           <div className="w-[100%] flex justify-between mt-1">
-            <div className="sm:w-[49%] w-[48%] sm:h-[45px] h-[40px] rounded-lg outline-none sm:pl-4 pl-2 border border-[#696969] flex items-center">
+            <div
+              className="sm:w-[49%] w-[48%] sm:h-[45px] h-[40px] rounded-lg outline-none sm:pl-4 pl-2   flex items-center"
+              style={{ border: `1px solid ${cardData?.textColor}` }}
+            >
               <input
                 type="radio"
                 onClick={() =>
@@ -201,13 +249,16 @@ const Rsvp = ({ cardData }) => {
               />
               <p
                 className="sm:text-[18px] text-[10px] sm:ml-2 ml-2"
-                style={{ fontFamily: "Inter" }}
+                // style={{ fontFamily: "Inter" }}
               >
                 YES! I WOULDN'T MISS IT!
               </p>
             </div>
 
-            <div className="sm:w-[49%] w-[48%] sm:h-[45px] h-[40px] rounded-lg outline-none sm:pl-4 pl-2 border border-[#696969] flex items-center bg-transparent">
+            <div
+              className="sm:w-[49%] w-[48%] sm:h-[45px] h-[40px] rounded-lg outline-none sm:pl-4 pl-2 flex items-center bg-transparent"
+              style={{ border: `1px solid ${cardData?.textColor}` }}
+            >
               <input
                 type="radio"
                 onClick={() =>
@@ -218,7 +269,7 @@ const Rsvp = ({ cardData }) => {
               />
               <p
                 className="sm:text-[18px] text-[10px] sm:ml-2 ml-2"
-                style={{ fontFamily: "Inter" }}
+                // style={{ fontFamily: "Inter" }}
               >
                 NO, SORRY TO MISS IT
               </p>
@@ -229,7 +280,7 @@ const Rsvp = ({ cardData }) => {
       <div className="w-[100%] flex justify-end sm:mt-6 mt-3">
         <div
           className="sm:h-[45px] h-[40px] sm:w-[20%] w-[25%] rounded-lg bg-black text-white flex justify-center items-center cursor-pointer"
-          style={{ fontFamily: "Inter" }}
+          // style={{ fontFamily: "Inter" }}
           onClick={() => handleCreate()}
         >
           Submit

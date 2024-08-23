@@ -19,28 +19,22 @@ const Venue = ({ cardData }) => {
       <div className="sm:w-[50%] w-[100%] sm:p-0 p-3 sm:h-[350px] flex justify-center items-center">
         <div className="w-[90%] h-[80%] flex flex-col items-center">
           <h2
-            className="sm:text-[30px] text-[28px] text-[#C6754D] font-[400] text-center "
-            style={{ fontFamily: "Montaga" }}
+            className="sm:text-[30px] text-[28px]  font-[400] text-center"
+            style={{ color: cardData?.textColor }}
           >
             The Venue
           </h2>
           <h2
             className="sm:text-[35px] text-[30px] font-[400] text-center sm:mt-3  "
-            style={{ fontFamily: "Montaga" }}
+            style={{}}
           >
             {cardData?.venueName}
             {/* Gino Winery Estate */}
           </h2>
-          <p
-            className="text-[18px] font-[400] text-center mt-2 "
-            style={{ fontFamily: "Montaga" }}
-          >
+          <p className="text-[18px] font-[400] text-center mt-2 " style={{}}>
             {cardData?.venueDescription}
           </p>
-          <p
-            className="text-[18px] font-[400] text-center mt-2"
-            style={{ fontFamily: "Montaga" }}
-          >
+          <p className="text-[18px] font-[400] text-center mt-2" style={{}}>
             {cardData?.Location}
           </p>
         </div>

@@ -18,7 +18,7 @@ const Header = ({ cardData }) => {
       <div className="sm:w-[90%]  w-[100%] flex sm:justify-between justify-around items-center sm:h-[70px] h-[40px]   ">
         <Link
           activeClass="active"
-          to="venue"
+          to="detail"
           spy={true}
           smooth={true}
           offset={-70}
@@ -26,9 +26,9 @@ const Header = ({ cardData }) => {
         >
           <p
             className="sm:text-[18px] text-[5px] font-light cursor-pointer"
-            style={{ fontFamily: "Inter" }}
+            // style={{ fontFamily: "Inter" }}
           >
-            Venue
+            Details
           </p>
         </Link>
         <Link
@@ -41,7 +41,7 @@ const Header = ({ cardData }) => {
         >
           <p
             className="sm:text-[18px] text-[5px] font-light cursor-pointer ml-1"
-            style={{ fontFamily: "Inter" }}
+            // style={{ fontFamily: "Inter" }}
           >
             Rsvp
           </p>
@@ -56,7 +56,7 @@ const Header = ({ cardData }) => {
         >
           <p
             className="sm:text-[18px]  font-light text-[5px] cursor-pointer ml-1"
-            style={{ fontFamily: "Inter" }}
+            // style={{ fontFamily: "Inter" }}
           >
             The Itinerary
           </p>
@@ -77,7 +77,7 @@ const Header = ({ cardData }) => {
         >
           <p
             className="sm:text-[18px] text-[5px] font-light cursor-pointer"
-            style={{ fontFamily: "Inter" }}
+            // style={{ fontFamily: "Inter" }}
           >
             Faq's
           </p>
@@ -92,14 +92,14 @@ const Header = ({ cardData }) => {
         >
           <p
             className="sm:text-[18px] text-[5px] font-light cursor-pointer"
-            style={{ fontFamily: "Inter" }}
+            // style={{ fontFamily: "Inter" }}
           >
             Contact Us
           </p>
         </Link>
         <Link
           activeClass="active"
-          to="gift"
+          to="registry"
           spy={true}
           smooth={true}
           offset={-70}
@@ -107,7 +107,7 @@ const Header = ({ cardData }) => {
         >
           <p
             className="sm:text-[18px] text-[5px] font-light cursor-pointer"
-            style={{ fontFamily: "Inter" }}
+            // style={{ fontFamily: "Inter" }}
           >
             Gift Registry
           </p>

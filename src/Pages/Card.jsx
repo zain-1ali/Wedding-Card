@@ -22,6 +22,7 @@ import {
 } from "react-scroll";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import io from "socket.io-client";
 
 const Card = () => {
   const { id } = useParams();
@@ -30,6 +31,26 @@ const Card = () => {
   const [cardData, setCardData] = useState({});
 
   let baseUrl = import.meta.env.VITE_BASE_URL;
+
+  // --------------------------------socket implementation for realtime changes in web page-------------------------------
+
+  const socket = io("https://thewelcomepass-cf3f2175b9ff.herokuapp.com"); // Connect to the server
+
+  useEffect(() => {
+    // Join the room associated with this card ID
+    socket.emit("joinRoom", cardData?._id);
+
+    // Listen for updates to this specific card
+    socket.on("weddingCardUpdated", (data) => {
+      setCardData(data); // Update state with new data
+    });
+
+    // Clean up the socket connection on unmount
+    return () => {
+      socket.off("weddingCardUpdated");
+    };
+  }, [cardData?._id]);
+
   //-------------------------------getting card data------------------------
   useEffect(() => {
     const gettingCardData = async () => {
@@ -43,8 +64,17 @@ const Card = () => {
   }, []);
 
   return (
-    <div className="w-[100%] min-h-screen  flex items-center flex-col">
-      <div className="w-[100%] " style={{ backgroundColor: cardData?.bgColor }}>
+    <div
+      className="w-[100%] min-h-screen  flex items-center flex-col"
+      style={{ color: cardData?.textColor, fontFamily: cardData?.font }}
+    >
+      <div
+        className="w-[100%] "
+        style={{
+          backgroundColor: cardData?.bgColor,
+          color: cardData?.textColor,
+        }}
+      >
         <Header cardData={cardData} />
       </div>
 
@@ -52,49 +82,50 @@ const Card = () => {
         className="h-[100%] sm:w-[100%] w-[100%]  flex flex-col items-center"
         style={{ backgroundColor: cardData?.bgColor }}
       >
-        {cardData?.order?.map((elm) => {
-          if (elm === 1) {
+        {/* hidebanner: false, hideDetails: false, hideVenue: false,
+        hideBridalParty: false, hideAccomodation: false, hidePlaces: false,
+        hideItinerary: false, hideRsvp: false, hidefaqs: false, hideConactUs:
+        false, hideRegistry: false, */}
+        {cardData?.order?.map((elm, i) => {
+          if (elm === 1 && !cardData?.hidebanner) {
             return <Banner cardData={cardData} />;
-          } else if (elm === 2) {
+          } else if (elm === 2 && !cardData?.hideVenue) {
+            return (
+              <Element name="detail" className="sm:w-[90%]  w-[95%] mb-9 ">
+                <VenueMap cardData={cardData} />
+              </Element>
+            );
+          } else if (elm === 3) {
             return (
               // <div
               //   className="w-[100%] flex justify-center"
               //   style={{ backgroundColor: cardData?.bgColor }}
               // >
-              <Element name="venue" className="sm:w-[90%]  w-[95%]  ">
+              <Element name="venue" className="sm:w-[90%]  w-[95%] mb-9 ">
                 <Venue cardData={cardData} />
               </Element>
               // {/* </div> */}
             );
-          } else if (elm === 3) {
+          } else if (elm === 4) {
             return (
               // <div
               //   className="w-[100%]  flex justify-center"
               //   style={{ backgroundColor: cardData?.bgColor }}
               // >
-              <Element name="bridal" className="sm:w-[90%]  w-[95%] ">
-                <BridalParty cardData={cardData} />
-              </Element>
-              // </div>
-            );
-          } else if (elm === 4) {
-            return (
-              // <div
-              //   className="w-[100%] flex justify-center sm:mt-[75px] mt-11 "
-              //   style={{ backgroundColor: cardData?.bgColor }}
-              // >
               <div
-                className="h-[100vh] sm:w-[100%] w-[95%]  border object-cover flex justify-center items-center"
+                className=" sm:w-[100%] w-[100%] object-cover flex justify-center items-center overflow-y-scroll "
                 style={{
-                  backgroundImage: `url(${cardData?.accomodationBackground})`,
+                  backgroundImage: `url(${cardData?.bridalBgImg})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   backgroundRepeat: "no-repeat",
+                  height: cardData?.bridalBgImg ? "100vh" : null,
                 }}
               >
-                <Accommodation cardData={cardData} />
+                <Element name="bridal" className="sm:w-[90%]  w-[95%] ">
+                  <BridalParty cardData={cardData} />
+                </Element>
               </div>
-              // </div>
             );
           } else if (elm === 5) {
             return (
@@ -103,27 +134,59 @@ const Card = () => {
               //   style={{ backgroundColor: cardData?.bgColor }}
               // >
               <div
-                className="h-[100vh] sm:w-[100%] w-[95%]  border object-cover flex justify-center items-center"
+                className={` w-[100%] object-cover flex justify-center items-center ${
+                  !cardData?.accomodationBackground && "sm:mt-[65px] mt-11"
+                }`}
                 style={{
-                  backgroundImage: `url(${cardData?.placesBackground})`,
+                  backgroundImage: `url(${cardData?.accomodationBackground})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   backgroundRepeat: "no-repeat",
+                  height: cardData?.accomodationBackground ? "100vh" : "350px",
                 }}
               >
-                <Trnsportation cardData={cardData} />
+                <Element
+                  name="accomodation"
+                  className={` sm:w-[40%]  w-[95%]  ${
+                    cardData?.accomodationBackground
+                      ? "h-[40%] sm:h-[60%]"
+                      : "h-[80%] sm:h-[100%]"
+                  }`}
+                >
+                  <Accommodation cardData={cardData} />
+                </Element>
               </div>
               // </div>
             );
           } else if (elm === 6) {
             return (
               // <div
-              //   className="w-[100%]  flex justify-center"
+              //   className="w-[100%] flex justify-center sm:mt-[75px] mt-11 "
               //   style={{ backgroundColor: cardData?.bgColor }}
               // >
-              <Element name="rsvp" className="sm:w-[90%]  w-[95%] ">
-                <Rsvp cardData={cardData} />
-              </Element>
+              <div
+                className={`h-[100vh] w-[100%] object-cover flex justify-center items-center ${
+                  !cardData?.placesBackground && "sm:mt-[65px] mt-11"
+                }`}
+                style={{
+                  backgroundImage: `url(${cardData?.placesBackground})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                  height: cardData?.placesBackground ? "100vh" : "350px",
+                }}
+              >
+                <Element
+                  name="places"
+                  className={` sm:w-[40%]  w-[95%]  ${
+                    cardData?.placesBackground
+                      ? "h-[40%] sm:h-[60%]"
+                      : "h-[80%] sm:h-[100%]"
+                  }`}
+                >
+                  <Trnsportation cardData={cardData} />
+                </Element>
+              </div>
               // </div>
             );
           } else if (elm === 7) {
@@ -132,10 +195,20 @@ const Card = () => {
               //   className="w-[100%]  flex justify-center"
               //   style={{ backgroundColor: cardData?.bgColor }}
               // >
-              <Element name="faq" className="sm:w-[90%]  w-[95%] ">
-                <Faq cardData={cardData} />
-              </Element>
-              // </div>
+              <div
+                className="w-[100%] object-cover flex justify-center items-center sm:mt-[60px] mt-10"
+                style={{
+                  backgroundImage: `url(${cardData?.rsvpBgImage})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                  height: cardData?.rsvpBgImage ? "100vh" : null,
+                }}
+              >
+                <Element name="rsvp" className="sm:w-[90%]  w-[95%] ">
+                  <Rsvp cardData={cardData} />
+                </Element>
+              </div>
             );
           } else if (elm === 8) {
             return (
@@ -143,11 +216,20 @@ const Card = () => {
               //   className="w-[100%]  flex justify-center"
               //   style={{ backgroundColor: cardData?.bgColor }}
               // >
-              <Element name="itinerary" className="sm:w-[90%]  w-[95%]">
-                {/* <Itinerary cardData={cardData} /> */}
-                <p>test</p>
-              </Element>
-              // </div>
+              <div
+                className=" sm:w-[100%] w-[100%] object-cover flex justify-center  overflow-y-scroll"
+                style={{
+                  backgroundImage: `url(${cardData?.faqImage})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                  height: cardData?.faqImage ? "100vh" : null,
+                }}
+              >
+                <Element name="faq" className="sm:w-[90%]  w-[95%] ">
+                  <Faq cardData={cardData} />
+                </Element>
+              </div>
             );
           } else if (elm === 9) {
             return (
@@ -155,10 +237,20 @@ const Card = () => {
               //   className="w-[100%]  flex justify-center"
               //   style={{ backgroundColor: cardData?.bgColor }}
               // >
-              <Element name="contact" className="sm:w-[90%]  w-[95%]">
-                <ContactUs cardData={cardData} />
-              </Element>
-              // </div>
+              <div
+                className=" sm:w-[100%] w-[100%] object-cover flex justify-center  overflow-y-scroll"
+                style={{
+                  backgroundImage: `url(${cardData?.itineraryBg})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                  height: cardData?.itineraryBg ? "100vh" : null,
+                }}
+              >
+                <Element name="itinerary" className="sm:w-[90%]  w-[95%]">
+                  <Itinerary cardData={cardData} />
+                </Element>
+              </div>
             );
           } else if (elm === 10) {
             return (
@@ -166,32 +258,53 @@ const Card = () => {
               //   className="w-[100%]  flex justify-center"
               //   style={{ backgroundColor: cardData?.bgColor }}
               // >
-              <Element name="gift" className="sm:w-[90%]  w-[95%]  ">
-                <Registry />
-              </Element>
-              // </div>
+              <div
+                className=" sm:w-[100%] w-[100%] object-cover flex justify-center  overflow-y-scroll "
+                style={{
+                  backgroundImage: `url(${cardData?.contactBgImage})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                  height: cardData?.itineraryBg ? "100vh" : null,
+                }}
+              >
+                <Element name="contact" className="sm:w-[90%]  w-[95%]">
+                  <ContactUs cardData={cardData} />
+                </Element>
+              </div>
+            );
+          } else if (elm === 11) {
+            return (
+              // <div
+              //   className="w-[100%]  flex justify-center"
+              //   style={{ backgroundColor: cardData?.bgColor }}
+              // >
+
+              <div
+                className=" sm:w-[100%] w-[100%] object-cover flex justify-center  overflow-y-scroll "
+                style={{
+                  backgroundImage: `url(${cardData?.registryBg})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                  height: cardData?.itineraryBg ? "100vh" : null,
+                }}
+              >
+                <Element name="registry" className="sm:w-[90%]  w-[95%]">
+                  <Registry cardData={cardData} />
+                </Element>
+              </div>
             );
           }
         })}
-
         {/* ----------------------------bridal party------------------------- */}
-
         {/* ----------------------------accomodation------------------------- */}
-
         {/* ----------------------------places we love ------------------------- */}
-
         {/* ----------------------------rsvp------------------------- */}
-
         {/* ----------------------------faq ------------------------- */}
-
         {/* ----------------------------Itinerary ------------------------- */}
-
         {/* ----------------------------contact us ------------------------- */}
-
         {/* ----------------------------gift registery ------------------------- */}
-
-        <br />
-        <br />
       </div>
     </div>
   );
