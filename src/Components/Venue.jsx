@@ -13,11 +13,11 @@ const Venue = ({ cardData }) => {
   ];
   return (
     <div
-      className="w-full sm:mt-[65px] mt-11 flex sm:flex-row flex-col  items-center justify-between "
+      className="w-full sm:w-[85%] sm:mt-[65px] mt-11 flex sm:flex-row flex-col  items-center justify-between"
       style={{ backgroundColor: cardData?.bgColor }}
     >
-      <div className="sm:w-[50%] w-[100%] sm:p-0 p-3 sm:h-[350px] flex justify-center items-center">
-        <div className="w-[90%] h-[80%] flex flex-col items-center">
+      <div className="sm:w-[50%] w-[100%] sm:p-0 p-3 sm:h-[350px] flex sm:justify-start justify-center items-center">
+        <div className="w-[90%] h-[80%] flex flex-col sm:items-start items-center">
           <h2
             className="sm:text-[30px] text-[28px]  font-[400] text-center"
             style={{ color: cardData?.textColor }}

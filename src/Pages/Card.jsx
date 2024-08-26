@@ -101,7 +101,10 @@ const Card = () => {
               //   className="w-[100%] flex justify-center"
               //   style={{ backgroundColor: cardData?.bgColor }}
               // >
-              <Element name="venue" className="sm:w-[90%]  w-[95%] mb-9 ">
+              <Element
+                name="venue"
+                className="sm:w-[100%]  w-[95%] mb-9 flex justify-center"
+              >
                 <Venue cardData={cardData} />
               </Element>
               // {/* </div> */}
