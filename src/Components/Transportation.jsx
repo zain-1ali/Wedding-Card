@@ -5,7 +5,7 @@ const Transportation = ({ cardData }) => {
   const sliderRef = React.useRef(null);
   // ---------------------for carousel------------------
 
-  const sliderSettings = {
+  const sliderSettings={
     dots: true,
     infinite: false,
     speed: 500,
