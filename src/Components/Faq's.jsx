@@ -6,14 +6,14 @@ const Faq = ({ cardData }) => {
   const [show, setShow] = useState(false);
   const [clickedIndex, setClickedIndex] = useState(null);
   return (
-    <div className="w-full sm:mt-[65px] mt-11 flex flex-col items-center ">
+    <div className="w-full sm:mt-[65px] mt-11 flex flex-col items-center">
       <h2
         className="font-[400] sm:text-[60px] text-3xl sm:mt-[15px] z-20"
         // style={{ fontFamily: "Parisienne" }}
       >
         Faq's
       </h2>
-      <div className="w-[100%] grid grid-cols-1 ">
+      <div className="w-[100%] grid grid-cols-1">
         {cardData?.faqs?.map((elm, i) => {
           return (
             <div className="w-[95%] sm:mt-9 mt-[20px]">
