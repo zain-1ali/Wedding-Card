@@ -3,31 +3,39 @@ import banner from "../Imgs/banner.png";
 
 const Banner = ({ cardData }) => {
   const formatDate = (inputDate) => {
-    const date = new Date(inputDate);
-    const monthNames = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-    const day = date.getDate();
-    const month = monthNames[date.getMonth()];
-    const year = date.getFullYear();
+    if (inputDate) {
+      const date = new Date(inputDate);
+      const monthNames = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ];
+      const day = date.getDate();
+      const month = monthNames[date.getMonth()];
+      const year = date.getFullYear();
 
-    // Return the formatted date
-    return `${month} ${day}, ${year}`;
+      // Return the formatted date
+      return `${month} ${day}, ${year}`;
+    } else {
+      return "";
+    }
   };
   return (
     <div
-      className="w-[100%] sm:min-h-[100vh] max-h-[300px]  flex flex-col items-center sm:mt-[70px] mt-10"
+      className={`w-[100%] ${
+        cardData?.headerImage
+          ? "sm:min-h-[100vh] max-h-[300px]"
+          : "sm:min-h-[300px] max-h-[150px]"
+      }    flex flex-col items-center sm:mt-[70px] mt-10`}
       style={{
         backgroundImage: `url(${cardData?.headerImage})`,
         backgroundSize: "cover",

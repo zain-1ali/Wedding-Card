@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../Imgs/logo.png";
+import logoplchldr from "../Imgs/logoPlchldr.png";
 import {
   Link,
   Element,
@@ -10,9 +10,12 @@ import {
 } from "react-scroll";
 
 const Header = ({ cardData }) => {
+  const returnFirstCharacter = (name) => {
+    return name?.[0]?.toUpperCase();
+  };
   return (
     <div
-      className="w-[100%] flex justify-center z-50 fixed"
+      className="w-[100%] flex justify-center z-50 fixed "
       style={{ backgroundColor: cardData?.bgColor }}
     >
       <div className="sm:w-[90%]  w-[100%] flex sm:justify-between justify-around items-center sm:h-[70px] h-[40px]   ">
@@ -61,11 +64,16 @@ const Header = ({ cardData }) => {
             The Itinerary
           </p>
         </Link>
-
+        {/* <div className="h-[60px] w-[200px] flex text-[50px] font-bold  items-center justify-evenly relative">
+     
+          {returnFirstCharacter(cardData?.groomName)}
+          <div className="h-[80%] w-[1px] bg-black"></div>
+          {returnFirstCharacter(cardData?.brideName)}
+        </div> */}
         <img
-          src={logo}
+          src={cardData?.logo || logoplchldr}
           alt="logo"
-          className="sm:w-[65px] sm:h-[52px] w-[33px] h-[26px] object-cover"
+          className="sm:w-[60px] sm:h-[60px] w-[33px] h-[33px] object-fill"
         />
         <Link
           activeClass="active"

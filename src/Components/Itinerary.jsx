@@ -87,46 +87,54 @@ const Itinerary = ({ cardData }) => {
 
   // ------------------------------------------To format time----------------------------------------
   const convertToAmPm = (time) => {
-    // Split the time into hours and minutes
-    let [hours, minutes] = time.split(":");
+    if (time) {
+      // Split the time into hours and minutes
+      let [hours, minutes] = time.split(":");
 
-    // Convert hours from string to number
-    hours = parseInt(hours);
+      // Convert hours from string to number
+      hours = parseInt(hours);
 
-    // Determine AM or PM
-    const period = hours >= 12 ? "PM" : "AM";
+      // Determine AM or PM
+      const period = hours >= 12 ? "PM" : "AM";
 
-    // Convert hours from 24-hour to 12-hour format
-    hours = hours % 12 || 12; // Adjust for 0 (midnight) and 12 (noon)
+      // Convert hours from 24-hour to 12-hour format
+      hours = hours % 12 || 12; // Adjust for 0 (midnight) and 12 (noon)
 
-    // Return the formatted time
-    return `${hours}:${minutes} ${period}`;
+      // Return the formatted time
+      return `${hours}:${minutes} ${period}`;
+    } else {
+      return "";
+    }
   };
 
   // ------------------------------------------To format date----------------------------------------
 
   const formatDate = (inputDate) => {
-    const date = new Date(inputDate);
-    const monthNames = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-    const day = date.getDate();
-    const month = monthNames[date.getMonth()];
-    const year = date.getFullYear();
+    if (inputDate) {
+      const date = new Date(inputDate);
+      const monthNames = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ];
+      const day = date.getDate();
+      const month = monthNames[date.getMonth()];
+      const year = date.getFullYear();
 
-    // Return the formatted date
-    return `${month} ${day}, ${year}`;
+      // Return the formatted date
+      return `${month} ${day}, ${year}`;
+    } else {
+      return "";
+    }
   };
 
   return (
@@ -183,7 +191,7 @@ const Itinerary = ({ cardData }) => {
                     }}
                     className="font-[400] sm:text-[16px] text-[12px]"
                   >
-                    {label.title}
+                    {label.title || ""}
                   </p>
                   <p
                     style={{ color: cardData?.textColor }}

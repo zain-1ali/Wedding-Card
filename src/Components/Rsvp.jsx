@@ -80,7 +80,11 @@ input[type="radio"]:checked::before {
       >
         Rsvp
       </h2>
-      <div className="h-[70vh] overflow-y-scroll w-[100%]">
+      <div
+        className={`${
+          rsvpForm?.numberOfGuests === 2 && "h-[70vh]"
+        }  overflow-y-scroll w-[100%]`}
+      >
         <div className="w-[100%] flex justify-between sm:mt-6 mt-3">
           <div className="sm:w-[49%] w-[48%]">
             <p
@@ -216,7 +220,7 @@ input[type="radio"]:checked::before {
                   className="font-[400] sm:text-[18px] text-[14px]"
                   // style={{ fontFamily: "Inter" }}
                 >
-                  Second Person Phone Number
+                  Second Person Phone
                 </p>
                 <input
                   type="text"

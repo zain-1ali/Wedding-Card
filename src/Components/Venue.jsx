@@ -16,7 +16,14 @@ const Venue = ({ cardData }) => {
       className="w-full sm:w-[85%] sm:mt-[65px] mt-11 flex sm:flex-row flex-col  items-center justify-between"
       style={{ backgroundColor: cardData?.bgColor }}
     >
-      <div className="sm:w-[50%] w-[100%] sm:p-0 p-3 sm:h-[350px] flex sm:justify-start justify-center items-center">
+      <div
+        className={`sm:w-[50%] w-[100%] sm:p-0 p-3  flex ${
+          (cardData?.venueName ||
+            cardData?.venueDescription ||
+            cardData?.Location) &&
+          "sm:h-[350px]"
+        } sm:justify-start justify-center items-center`}
+      >
         <div className="w-[90%] h-[80%] flex flex-col sm:items-start items-center">
           <h2
             className="sm:text-[30px] text-[28px]  font-[400] text-center"
@@ -39,9 +46,12 @@ const Venue = ({ cardData }) => {
           </p>
         </div>
       </div>
-      <div className="w-[100%] flex justify-center items-center sm:mt-0 mt-10">
-        <ImageSwipper images={cardData?.venueImages} />
-      </div>
+
+      {cardData?.venueImages?.length > 0 && (
+        <div className="w-[100%] flex justify-center items-center sm:mt-0 mt-10">
+          <ImageSwipper images={cardData?.venueImages} />
+        </div>
+      )}
     </div>
   );
 };

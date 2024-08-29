@@ -89,25 +89,20 @@ const Card = () => {
         {cardData?.order?.map((elm, i) => {
           if (elm === 1 && !cardData?.hidebanner) {
             return <Banner cardData={cardData} />;
-          } else if (elm === 2 && !cardData?.hideVenue) {
+          } else if (elm === 2 && !cardData?.hideDetails) {
             return (
               <Element name="detail" className="sm:w-[90%]  w-[95%] mb-9 ">
                 <VenueMap cardData={cardData} />
               </Element>
             );
-          } else if (elm === 3) {
+          } else if (elm === 3 && !cardData?.hideVenue) {
             return (
-              // <div
-              //   className="w-[100%] flex justify-center"
-              //   style={{ backgroundColor: cardData?.bgColor }}
-              // >
               <Element
                 name="venue"
                 className="sm:w-[100%]  w-[95%] mb-9 flex justify-center"
               >
                 <Venue cardData={cardData} />
               </Element>
-              // {/* </div> */}
             );
           } else if (elm === 4) {
             return (
@@ -116,7 +111,7 @@ const Card = () => {
               //   style={{ backgroundColor: cardData?.bgColor }}
               // >
               <div
-                className=" sm:w-[100%] w-[100%] object-cover flex justify-center items-center overflow-y-scroll "
+                className=" sm:w-[100%] w-[100%] object-cover flex justify-center items-center overflow-y-scroll"
                 style={{
                   backgroundImage: `url(${cardData?.bridalBgImg})`,
                   backgroundSize: "cover",
@@ -130,7 +125,7 @@ const Card = () => {
                 </Element>
               </div>
             );
-          } else if (elm === 5) {
+          } else if (elm === 5 && cardData?.accomodation?.length > 0) {
             return (
               // <div
               //   className="w-[100%] flex justify-center sm:mt-[75px] mt-11 "
@@ -161,7 +156,7 @@ const Card = () => {
               </div>
               // </div>
             );
-          } else if (elm === 6) {
+          } else if (elm === 6 && cardData?.placesWeLove?.length > 0) {
             return (
               // <div
               //   className="w-[100%] flex justify-center sm:mt-[75px] mt-11 "
@@ -220,7 +215,9 @@ const Card = () => {
               //   style={{ backgroundColor: cardData?.bgColor }}
               // >
               <div
-                className=" sm:w-[100%] w-[100%] object-cover flex justify-center  overflow-y-scroll"
+                className={` sm:w-[100%] w-[100%] object-cover flex justify-center ${
+                  cardData?.faqs?.length > 0 && "overflow-y-scroll"
+                }`}
                 style={{
                   backgroundImage: `url(${cardData?.faqImage})`,
                   backgroundSize: "cover",
@@ -262,7 +259,9 @@ const Card = () => {
               //   style={{ backgroundColor: cardData?.bgColor }}
               // >
               <div
-                className=" sm:w-[100%] w-[100%] object-cover flex justify-center  overflow-y-scroll "
+                className={` sm:w-[100%] w-[100%] object-cover flex justify-center ${
+                  cardData?.contacts?.length > 0 && "overflow-y-scroll"
+                }`}
                 style={{
                   backgroundImage: `url(${cardData?.contactBgImage})`,
                   backgroundSize: "cover",

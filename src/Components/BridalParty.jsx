@@ -42,7 +42,11 @@ const BridalParty = ({ cardData }) => {
             </h2>
           </div>
           {isMen ? (
-            <div className="sm:h-[70%] h-[80vh] sm:w-[85%] flex sm:flex-row flex-col sm:items-start items-center sm:justify-start sm:gap-[10%] gap-5 sm:mt-0 mt-4 ">
+            <div
+              className={`${
+                cardData?.groomsMen?.length > 0 ? "h-[80vh]" : "h-[10vh]"
+              } sm:h-[70%]  sm:w-[85%] flex sm:flex-row flex-col sm:items-start items-center sm:justify-start sm:gap-[10%] gap-5 sm:mt-0 mt-4 `}
+            >
               {cardData?.groomsMen?.map((elm) => {
                 return (
                   <div className="w-[170px]  flex flex-col justify-center items-center ">
@@ -102,7 +106,11 @@ const BridalParty = ({ cardData }) => {
               </div> */}
             </div>
           ) : (
-            <div className="sm:h-[70%] sm:w-[85%] flex sm:flex-row flex-col sm:items-start items-center sm:justify-start sm:gap-[70px] gap-5 sm:mt-0 mt-4">
+            <div
+              className={`sm:h-[70%] ${
+                cardData?.bridesMaids?.length > 0 ? "h-[80vh]" : "h-[10vh]"
+              } sm:w-[85%] flex sm:flex-row flex-col sm:items-start items-center sm:justify-start sm:gap-[70px] gap-5 sm:mt-0 mt-4`}
+            >
               {cardData?.bridesMaids?.map((elm) => {
                 return (
                   <div className="w-[170px]  flex flex-col justify-center items-center   ">

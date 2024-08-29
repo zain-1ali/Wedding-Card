@@ -5,7 +5,7 @@ const Transportation = ({ cardData }) => {
   const sliderRef = React.useRef(null);
   // ---------------------for carousel------------------
 
-  const sliderSettings={
+  const sliderSettings = {
     dots: true,
     infinite: false,
     speed: 500,
@@ -14,10 +14,19 @@ const Transportation = ({ cardData }) => {
     // arrows: true,
   };
 
-  const steps = [1, 2, 3, 4];
-
   const innerWidth = window.innerWidth;
   console.log(cardData?.placesWeLove);
+
+  // url validation
+
+  const returnValidUrl = (url) => {
+    if (url.includes("http://") || url.includes("https://")) {
+      return url;
+    } else {
+      return "http://" + url;
+    }
+  };
+
   return (
     <>
       <Slider
@@ -57,12 +66,17 @@ const Transportation = ({ cardData }) => {
                 >
                   {step?.description}
                 </p>
-                <button
-                  // style={{ fontFamily: "Montaga" }}
-                  className="sm:h-[45px] h-[30px] sm:w-[91px] w-[60px] border sm:mt-5 mt-2 bg-[#FCF9F7] border-[black] font-[400] sm:text-[22px] text-[14px]"
-                >
-                  Book
-                </button>
+                {step?.bookingUrl && (
+                  <button
+                    // style={{ fontFamily: "Montaga" }}
+                    className="sm:h-[45px] h-[30px] sm:w-[91px] w-[60px] border sm:mt-5 mt-2 bg-[#FCF9F7] border-[black] font-[400] sm:text-[22px] text-[14px]"
+                    onClick={() =>
+                      window.open(returnValidUrl(step?.bookingUrl))
+                    }
+                  >
+                    Book
+                  </button>
+                )}
               </div>
               {/* 
         <div className="sm:w-[30%] w-[95%] sm:mt-[1px] mt-[20px]">

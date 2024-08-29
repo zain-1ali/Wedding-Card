@@ -38,14 +38,14 @@ const VenueMap = ({ cardData }) => {
     <div className="w-[100%] sm:mt-[45px] mt-7">
       <div className="w-[100%] flex justify-center  mb-4 sm:mb-[20px]">
         <p
-          className="sm:text-[36px]  text-[28px]  font-[500]  w-[90%] "
+          className="sm:text-[36px]  text-[28px]  font-[500]  w-[95%]"
           style={{ color: cardData?.textColor }}
         >
           Details
         </p>
       </div>
       <div className="w-full  flex sm:flex-row flex-col  items-center justify-between">
-        {innerWidth > 500 && (
+        {innerWidth > 500 && cardData?.detailImages?.length > 0 && (
           <div className="sm:w-[50%] w-[90%]  flex flex-col items-start pl-[5%]">
             <div>
               <ImageSwipper images={cardData?.detailImages || []} />
@@ -143,7 +143,7 @@ const VenueMap = ({ cardData }) => {
             </Link>
           </div>
         </div>
-        {innerWidth <= 500 && (
+        {innerWidth <= 500 && cardData?.detailImages?.length > 0 && (
           <div className="sm:w-[50%] w-[100%]  flex justify-center mt-10 ">
             <div>
               <ImageSwipper images={cardData?.detailImages || []} />
