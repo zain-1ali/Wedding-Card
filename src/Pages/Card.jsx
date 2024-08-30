@@ -104,7 +104,7 @@ const Card = () => {
                 <Venue cardData={cardData} />
               </Element>
             );
-          } else if (elm === 4) {
+          } else if (elm === 4 && !cardData?.hideBridalParty) {
             return (
               // <div
               //   className="w-[100%]  flex justify-center"
@@ -125,7 +125,11 @@ const Card = () => {
                 </Element>
               </div>
             );
-          } else if (elm === 5 && cardData?.accomodation?.length > 0) {
+          } else if (
+            elm === 5 &&
+            cardData?.accomodation?.length > 0 &&
+            !cardData?.hideAccomodation
+          ) {
             return (
               // <div
               //   className="w-[100%] flex justify-center sm:mt-[75px] mt-11 "
@@ -156,7 +160,11 @@ const Card = () => {
               </div>
               // </div>
             );
-          } else if (elm === 6 && cardData?.placesWeLove?.length > 0) {
+          } else if (
+            elm === 6 &&
+            cardData?.placesWeLove?.length > 0 &&
+            !cardData?.hidePlaces
+          ) {
             return (
               // <div
               //   className="w-[100%] flex justify-center sm:mt-[75px] mt-11 "
@@ -187,7 +195,7 @@ const Card = () => {
               </div>
               // </div>
             );
-          } else if (elm === 7) {
+          } else if (elm === 7 && !cardData?.hideRsvp) {
             return (
               // <div
               //   className="w-[100%]  flex justify-center"
@@ -208,7 +216,7 @@ const Card = () => {
                 </Element>
               </div>
             );
-          } else if (elm === 8) {
+          } else if (elm === 8 && !cardData?.hidefaqs) {
             return (
               // <div
               //   className="w-[100%]  flex justify-center"
@@ -231,7 +239,7 @@ const Card = () => {
                 </Element>
               </div>
             );
-          } else if (elm === 9) {
+          } else if (elm === 9 && !cardData?.hideItinerary) {
             return (
               // <div
               //   className="w-[100%]  flex justify-center"
@@ -252,7 +260,7 @@ const Card = () => {
                 </Element>
               </div>
             );
-          } else if (elm === 10) {
+          } else if (elm === 10 && !cardData?.hideConactUs) {
             return (
               // <div
               //   className="w-[100%]  flex justify-center"
@@ -275,7 +283,7 @@ const Card = () => {
                 </Element>
               </div>
             );
-          } else if (elm === 11) {
+          } else if (elm === 11 && !cardData?.hideRegistry) {
             return (
               // <div
               //   className="w-[100%]  flex justify-center"
