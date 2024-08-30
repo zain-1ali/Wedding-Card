@@ -5,7 +5,7 @@ import "leaflet/dist/leaflet.css";
 import map from "../Imgs/map.png";
 import ImageSwipper from "./ImageSwipper";
 
-const Venue = ({ cardData })=>{
+const Venue = ({ cardData }) => {
   const images = [
     "https://media.istockphoto.com/id/1399000045/photo/wedding-guests-clapping-hands-as-the-newlywed-couple-walk-down-the-aisle-joyful-bride-and.jpg?s=612x612&w=0&k=20&c=KQLABtP9v0zSmT_pqIqhdRlG-nWIEOUoGFofIxgjlqI=",
     "https://images.unsplash.com/photo-1524479967500-c3a0bf56d080?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8d2VkZGluZyUyMHZlbnVlfGVufDB8fDB8fHww",
@@ -24,7 +24,7 @@ const Venue = ({ cardData })=>{
           "sm:h-[350px]"
         } sm:justify-start justify-center items-center`}
       >
-        <div className="w-[90%] h-[80%] flex flex-col sm:items-start items-center">
+        <div className="w-[90%] h-[100%] flex flex-col sm:items-start items-center overflow-y-scroll">
           <h2
             className="sm:text-[30px] text-[28px]  font-[400] text-center"
             style={{ color: cardData?.textColor }}
@@ -32,16 +32,16 @@ const Venue = ({ cardData })=>{
             The Venue
           </h2>
           <h2
-            className="sm:text-[35px] text-[30px] font-[400] text-center sm:mt-3  "
+            className="sm:text-[35px] text-[30px] font-[400]  sm:mt-3  "
             style={{}}
           >
             {cardData?.venueName}
             {/* Gino Winery Estate */}
           </h2>
-          <p className="text-[18px] font-[400] text-center mt-2 " style={{}}>
+          <p className="text-[18px] font-[400]  mt-2 " style={{}}>
             {cardData?.venueDescription}
           </p>
-          <p className="text-[18px] font-[400] text-center mt-2" style={{}}>
+          <p className="text-[18px] font-[400] mt-2" style={{}}>
             {cardData?.Location}
           </p>
         </div>

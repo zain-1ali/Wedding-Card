@@ -2,6 +2,7 @@ import React from "react";
 import banner from "../Imgs/banner.png";
 
 const Banner = ({ cardData }) => {
+  // ------------------------------------------To format date----------------------------------------
   const formatDate = (inputDate) => {
     if (inputDate) {
       const date = new Date(inputDate);
@@ -29,6 +30,29 @@ const Banner = ({ cardData }) => {
       return "";
     }
   };
+
+  // ------------------------------------------To format time----------------------------------------
+  const convertToAmPm = (time) => {
+    if (time) {
+      // Split the time into hours and minutes
+      let [hours, minutes] = time.split(":");
+
+      // Convert hours from string to number
+      hours = parseInt(hours);
+
+      // Determine AM or PM
+      const period = hours >= 12 ? "PM" : "AM";
+
+      // Convert hours from 24-hour to 12-hour format
+      hours = hours % 12 || 12; // Adjust for 0 (midnight) and 12 (noon)
+
+      // Return the formatted time
+      return `${hours}:${minutes} ${period}`;
+    } else {
+      return "";
+    }
+  };
+
   return (
     <div
       className={`w-[100%] ${
@@ -63,7 +87,8 @@ const Banner = ({ cardData }) => {
           className="font-[400] sm:text-[30px] text-[16px]  bg-transparent"
           style={{ color: cardData?.textColor }}
         >
-          {formatDate(cardData?.eventDate)} - {cardData?.location}
+          {formatDate(cardData?.eventDate)} - {convertToAmPm(cardData?.time)} -{" "}
+          {cardData?.location}
         </p>
         {/* 
         <div className="w-[95%] flex justify-center object-cover mt-3">
