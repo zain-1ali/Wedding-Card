@@ -63,6 +63,16 @@ const Card = () => {
     gettingCardData();
   }, []);
 
+  // check if component on the top of card
+
+  const checkIfOnTop = (number, order) => {
+    if (order?.[0] === number) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   return (
     <div
       className="w-[100%] min-h-screen  flex items-center flex-col"
@@ -88,10 +98,25 @@ const Card = () => {
         false, hideRegistry: false, */}
         {cardData?.order?.map((elm, i) => {
           if (elm === 1 && !cardData?.hidebanner) {
-            return <Banner cardData={cardData} />;
+            return (
+              <div
+                style={{
+                  // marginTop: checkIfOnTop(1, cardData?.order) ? "40px" : "0px",
+                  width: "100%",
+                }}
+              >
+                <Banner cardData={cardData} />
+              </div>
+            );
           } else if (elm === 2 && !cardData?.hideDetails) {
             return (
-              <Element name="detail" className="sm:w-[90%]  w-[95%] mb-9 ">
+              <Element
+                name="detail"
+                className="sm:w-[90%]  w-[95%] mb-9 "
+                // style={{
+                //   marginTop: checkIfOnTop(2, cardData?.order) ? "40px" : "0px",
+                // }}
+              >
                 <VenueMap cardData={cardData} />
               </Element>
             );
@@ -100,6 +125,9 @@ const Card = () => {
               <Element
                 name="venue"
                 className="sm:w-[100%]  w-[95%] mb-9 flex justify-center"
+                // style={{
+                //   marginTop: checkIfOnTop(3, cardData?.order) ? "40px" : "0px",
+                // }}
               >
                 <Venue cardData={cardData} />
               </Element>
@@ -118,6 +146,7 @@ const Card = () => {
                   backgroundPosition: "center",
                   backgroundRepeat: "no-repeat",
                   height: cardData?.bridalBgImg ? "100vh" : null,
+                  // marginTop: checkIfOnTop(4, cardData?.order) ? "40px" : "0px",
                 }}
               >
                 <Element name="bridal" className="sm:w-[90%]  w-[95%] ">
@@ -136,7 +165,7 @@ const Card = () => {
               //   style={{ backgroundColor: cardData?.bgColor }}
               // >
               <div
-                className={` w-[100%] object-cover flex justify-center items-center ${
+                className={` w-[100%] object-cover flex justify-center items-center${
                   !cardData?.accomodationBackground && "sm:mt-[65px] mt-11"
                 }`}
                 style={{
@@ -144,7 +173,7 @@ const Card = () => {
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   backgroundRepeat: "no-repeat",
-                  height: cardData?.accomodationBackground ? "100vh" : "350px",
+                  height: cardData?.accomodationBackground ? "100vh" : "450px",
                 }}
               >
                 <Element
@@ -152,7 +181,7 @@ const Card = () => {
                   className={` sm:w-[40%]  w-[95%]  ${
                     cardData?.accomodationBackground
                       ? "h-[40%] sm:h-[60%]"
-                      : "h-[80%] sm:h-[100%]"
+                      : "h-[80%] sm:h-[80%]"
                   }`}
                 >
                   <Accommodation cardData={cardData} />
@@ -179,7 +208,7 @@ const Card = () => {
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   backgroundRepeat: "no-repeat",
-                  height: cardData?.placesBackground ? "100vh" : "350px",
+                  height: cardData?.placesBackground ? "100vh" : "450px",
                 }}
               >
                 <Element
@@ -187,7 +216,7 @@ const Card = () => {
                   className={` sm:w-[40%]  w-[95%]  ${
                     cardData?.placesBackground
                       ? "h-[40%] sm:h-[60%]"
-                      : "h-[80%] sm:h-[100%]"
+                      : "h-[80%]"
                   }`}
                 >
                   <Trnsportation cardData={cardData} />

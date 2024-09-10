@@ -42,7 +42,7 @@ const Venue = ({ cardData }) => {
             {cardData?.venueDescription}
           </p>
           <p className="text-[18px] font-[400] mt-2" style={{}}>
-            {cardData?.Location}
+            {cardData?.venueLocation}
           </p>
         </div>
       </div>
