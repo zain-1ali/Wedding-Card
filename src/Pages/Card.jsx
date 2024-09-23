@@ -165,7 +165,7 @@ const Card = () => {
               //   style={{ backgroundColor: cardData?.bgColor }}
               // >
               <div
-                className={` w-[100%] object-cover flex justify-center items-center${
+                className={` w-[100%] object-cover flex justify-center items-center ${
                   !cardData?.accomodationBackground && "sm:mt-[65px] mt-11"
                 }`}
                 style={{
