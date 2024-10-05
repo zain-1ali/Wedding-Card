@@ -21,7 +21,7 @@ const Rsvp = ({ cardData }) => {
   });
   const handleCreate = async (e) => {
     e.preventDefault();
-    if (rsvpForm?.phone?.length < 6 || rsvpForm?.phone2?.length < 6) {
+    if (rsvpForm?.phone?.length < 6) {
       toast.error("please enter a valid phone number");
       return;
     }
